@@ -1,0 +1,18 @@
+name: container-playground
+services:
+  vm0:
+    image: 'container-playground-service'
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    extra_hosts:
+    - "localhost.in:127.0.0.1"
+    volumes:
+      - ./:/var/www/html
+    command: ["nginx"]
+    # network_mode: pasta
+    environment:
+      - MYENV=debug
+    ports:
+      - "2080:80"
+
